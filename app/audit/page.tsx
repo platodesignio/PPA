@@ -1,7 +1,7 @@
 import AuditForm from "@/components/AuditForm";
 
 export const metadata = {
-  title: "Audit — Proper Paper Audit",
+  title: "Audit",
 };
 
 export default function AuditPage() {

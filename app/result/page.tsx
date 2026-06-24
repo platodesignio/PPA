@@ -35,8 +35,10 @@ function DossierLabel({ n, title }: { n: string; title: string }) {
   );
 }
 
-function ScoreLine({ item }: { item: ScoreItem }) {
-  const color = totalColor(item.value);
+/** isRisk=true → high value = danger (color scale inverted) */
+function ScoreLine({ item, isRisk }: { item: ScoreItem; isRisk?: boolean }) {
+  const displayValue = isRisk ? 100 - item.value : item.value;
+  const color = totalColor(displayValue);
   return (
     <div className="flex items-start gap-5 mb-3">
       <div className="shrink-0 text-right w-8">
@@ -251,8 +253,8 @@ export default function ResultPage() {
       {/* 10 Publication Risk */}
       <section className="mb-8">
         <DossierLabel n="10" title="Publication Risk" />
-        {s10_gen && <ScoreLine item={s10_gen} />}
-        {s10_risk && <ScoreLine item={s10_risk} />}
+        {s10_gen && <ScoreLine item={s10_gen} isRisk />}
+        {s10_risk && <ScoreLine item={s10_risk} isRisk />}
         {!s10_gen && !s10_risk && <MissingScore />}
         {result.mainPublicRisks && result.mainPublicRisks.length > 0 && (
           <ul className="mt-3 space-y-1.5">
@@ -281,7 +283,7 @@ export default function ResultPage() {
       {/* 13 Management Apparatus Risk */}
       <section className="mb-8">
         <DossierLabel n="13" title="Management Apparatus Risk" />
-        {s13 ? <ScoreLine item={s13} /> : <MissingScore />}
+        {s13 ? <ScoreLine item={s13} isRisk /> : <MissingScore />}
       </section>
 
       <div className="border-t border-gray-50 mb-8" />
@@ -289,7 +291,7 @@ export default function ResultPage() {
       {/* 14 Required Revisions */}
       <section className="mb-10">
         <DossierLabel n="14" title="Required Revisions" />
-        <ol className="space-y-2 mb-4">
+        <ol className="space-y-2">
           {result.requiredRevisions.map((rev, i) => (
             <li key={i} className="flex gap-3 text-xs text-gray-600 leading-relaxed">
               <span className="text-gray-200 shrink-0 font-bold tabular-nums">{String(i + 1).padStart(2, "0")}</span>
@@ -297,12 +299,6 @@ export default function ResultPage() {
             </li>
           ))}
         </ol>
-        {result.weakestConceptualPoint && (
-          <div className="border border-gray-100 bg-gray-50 px-4 py-3">
-            <p className="text-[10px] font-bold uppercase tracking-widest text-gray-200 mb-1">Weakest Conceptual Point</p>
-            <p className="text-xs text-gray-500 leading-relaxed">{result.weakestConceptualPoint}</p>
-          </div>
-        )}
       </section>
 
       {/* 15 Final Publication Judgment */}
@@ -324,7 +320,7 @@ export default function ResultPage() {
       </div>
 
       {/* Actions */}
-      <div className="flex flex-wrap gap-3 pt-4 border-t border-gray-100">
+      <div className="no-print flex flex-wrap gap-3 pt-4 border-t border-gray-100">
         <Link
           href="/audit"
           className="px-5 py-2.5 bg-accent text-white text-xs tracking-wide uppercase hover:bg-indigo-700 transition-colors"

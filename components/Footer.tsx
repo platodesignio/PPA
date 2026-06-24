@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Footer() {
   return (
     <footer className="border-t border-gray-100 py-8 mt-16">
@@ -16,13 +18,23 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Method family note */}
-        <div className="border-t border-gray-50 pt-4 flex items-center justify-between gap-4">
-          <p className="text-[10px] text-gray-200 italic">
-            Part of an independent audit philosophy tool family.
-          </p>
+        {/* Links + method family */}
+        <div className="border-t border-gray-50 pt-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+          <div className="flex items-center gap-4">
+            <Link href="/privacy" className="text-[10px] text-gray-300 hover:text-gray-500 transition-colors">
+              Privacy Policy
+            </Link>
+            <span className="text-gray-100 text-[10px]">·</span>
+            <Link href="/terms" className="text-[10px] text-gray-300 hover:text-gray-500 transition-colors">
+              Terms of Use
+            </Link>
+            <span className="text-gray-100 text-[10px]">·</span>
+            <Link href="/method" className="text-[10px] text-gray-300 hover:text-gray-500 transition-colors">
+              Method
+            </Link>
+          </div>
           <p className="text-[10px] text-gray-200 italic shrink-0">
-            FEDS Method Family
+            Part of an independent audit philosophy tool family. FEDS Method Family.
           </p>
         </div>
 

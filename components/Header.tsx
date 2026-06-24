@@ -13,10 +13,8 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-gray-100">
       <div className="max-w-4xl mx-auto px-6 h-14 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-3 group">
-          <span className="text-xs font-bold tracking-[0.2em] uppercase text-accent">PPA</span>
-          <span className="hidden sm:block w-px h-3 bg-gray-200" />
-          <span className="hidden sm:block text-xs text-gray-400 tracking-wide">Proper Paper Audit</span>
+        <Link href="/" className="flex items-center gap-2 group">
+          <span className="text-xs font-bold tracking-[0.25em] uppercase text-accent">PPA</span>
         </Link>
         <nav className="flex items-center gap-6">
           {NAV.map(({ href, label }) => (

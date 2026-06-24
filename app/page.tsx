@@ -65,8 +65,11 @@ export default function HomePage() {
             A conceptual audit engine for originality, conceptual precision, dialectical structure,
             AI-slop resistance, public risk, and publication readiness.
           </p>
-          <p className="text-xs text-gray-300 mb-10">
+          <p className="text-xs text-gray-300 mb-6">
             Not a writing assistant. A conceptual audit engine.
+          </p>
+          <p className="text-xs text-gray-400 mb-10 border-l border-gray-100 pl-4">
+            Open a paper audit file or begin a new conceptual audit.
           </p>
           <div className="flex items-center gap-4">
             <Link
@@ -82,6 +85,24 @@ export default function HomePage() {
               View Method
             </Link>
           </div>
+        </div>
+      </section>
+
+      {/* Methodological Axioms */}
+      <section className="py-10 border-b border-gray-100">
+        <p className="text-[10px] font-bold tracking-[0.25em] uppercase text-gray-200 mb-5">Methodological Axioms</p>
+        <div className="space-y-2">
+          {[
+            "No authors are scored.",
+            "Score is not judgment.",
+            "Originality is not terminology density.",
+            "A concept that can mean anything means nothing.",
+          ].map((axiom) => (
+            <div key={axiom} className="flex gap-3 text-xs text-gray-400 leading-relaxed">
+              <span className="text-gray-200 shrink-0">—</span>
+              <span className="italic">{axiom}</span>
+            </div>
+          ))}
         </div>
       </section>
 

@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 export const metadata = {
-  title: "Method — Proper Paper Audit",
+  title: "Method",
 };
 
 const PILLARS = [
