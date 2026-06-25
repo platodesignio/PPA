@@ -177,6 +177,27 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Dialectic Audit CTA */}
+      <section className="py-14 border-b border-gray-100">
+        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-6">
+          <div className="max-w-xl">
+            <p className="text-[10px] font-bold tracking-[0.25em] uppercase text-gray-200 mb-3">Dialectic Audit</p>
+            <h2 className="text-lg font-light text-gray-800 leading-snug mb-3">
+              その命題は、本当に新しいのか。
+            </h2>
+            <p className="text-xs text-gray-400 leading-relaxed">
+              思想史上の系譜・既弁証度・イデオロギーリスク・新規性スコアを監査し、より強い命題へ再構成します。
+            </p>
+          </div>
+          <Link
+            href="/dialectic"
+            className="inline-block shrink-0 px-6 py-2.5 border border-gray-200 text-gray-500 text-xs tracking-[0.1em] uppercase hover:border-gray-400 hover:text-gray-700 transition-colors self-start"
+          >
+            Open Dialectic Audit
+          </Link>
+        </div>
+      </section>
+
       {/* Final CTA */}
       <section className="py-16 text-center">
         <p className="text-sm text-gray-400 leading-relaxed max-w-lg mx-auto mb-8">

@@ -5,6 +5,7 @@ import { clsx } from "clsx";
 
 const NAV = [
   { href: "/audit", label: "Audit" },
+  { href: "/dialectic", label: "Dialectic" },
   { href: "/method", label: "Method" },
 ];
 

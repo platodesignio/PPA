@@ -54,3 +54,67 @@ export const AuditResultSchema = z.object({
 
 export type AuditInputParsed = z.infer<typeof AuditInputSchema>;
 export type AuditResultParsed = z.infer<typeof AuditResultSchema>;
+
+// ── Dialectic Audit schemas ───────────────────────────────────────────────────
+
+const DialecticScoreResultSchema = z.object({
+  score: z.number().min(0).max(100),
+  label: z.string().min(1),
+  reason: z.string().min(1),
+});
+
+const DialecticIdeologicalRiskSchema = z.object({
+  score: z.number().min(0).max(100),
+  label: z.string().min(1),
+  risk_factors: z.array(z.string()).default([]),
+  reason: z.string().min(1),
+});
+
+export const DialecticAuditResultSchema = z.object({
+  summary: z.string().min(1),
+  central_claim: z.string().min(1),
+  implicit_assumptions: z.array(z.string()).default([]),
+  opposing_claims: z.array(z.string()).default([]),
+  justification_structure: z.string().default(""),
+  discourse_genre: z.array(z.string()).default([]),
+  genealogy: z.object({
+    related_thinkers: z.array(z.string()).default([]),
+    related_concepts: z.array(z.string()).default([]),
+    related_schools: z.array(z.string()).default([]),
+    historical_debates: z.array(z.string()).default([]),
+    prior_articulations: z.array(z.string()).default([]),
+    major_critics: z.array(z.string()).default([]),
+  }).default({
+    related_thinkers: [],
+    related_concepts: [],
+    related_schools: [],
+    historical_debates: [],
+    prior_articulations: [],
+    major_critics: [],
+  }),
+  already_dialecticized_score: DialecticScoreResultSchema,
+  conceptual_novelty_score: DialecticScoreResultSchema,
+  ideological_risk_score: DialecticIdeologicalRiskSchema,
+  publication_judgment: z.object({
+    status: z.string().min(1),
+    reason: z.string().min(1),
+  }),
+  main_counterarguments: z.array(z.string()).default([]),
+  reconstruction: z.object({
+    short_version: z.string().default(""),
+    social_post_version: z.string().default(""),
+    essay_intro_version: z.string().default(""),
+    academic_claim_version: z.string().default(""),
+    safer_critical_version: z.string().default(""),
+  }).default({
+    short_version: "",
+    social_post_version: "",
+    essay_intro_version: "",
+    academic_claim_version: "",
+    safer_critical_version: "",
+  }),
+  recommended_reading: z.array(z.string()).default([]),
+  final_audit_comment: z.string().min(1),
+});
+
+export type DialecticAuditResultParsed = z.infer<typeof DialecticAuditResultSchema>;
